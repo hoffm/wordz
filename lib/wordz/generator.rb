@@ -8,13 +8,14 @@ module Wordz
 
     ROOT_NODE = "<root>".freeze
 
-    def initialize(grammar = {}, subjects: {})
+    def initialize(grammar: {}, subjects: {})
       @output = []
       @subjects = subjects
       @grammar = grammar
     end
 
-    def generate(root_node = ROOT_NODE)
+    def call(root_node = nil)
+      root_node ||= ROOT_NODE
       post_process(generate_list(root_node))
     end
 

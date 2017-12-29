@@ -1,10 +1,10 @@
 require "spec_helper.rb"
 
 describe Wordz::Generator do
-  describe "#generate" do
+  describe "#call" do
     let(:subjects) { {} }
     let(:output) do
-      described_class.new(grammar, subjects: subjects).generate
+      described_class.new(grammar: grammar, subjects: subjects).call
     end
     let(:prob_threshold) { 0 }
     before(:each) { fix_rand(prob_threshold) }
@@ -131,7 +131,7 @@ describe Wordz::Generator do
       end
 
       let(:output_from_custom_node) do
-        described_class.new(grammar, subjects: subjects).generate("<custom>")
+        described_class.new(grammar: grammar, subjects: subjects).call("<custom>")
       end
 
       it "starts evaluation at that node" do

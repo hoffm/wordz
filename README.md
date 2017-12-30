@@ -5,3 +5,32 @@
 # Wordz
 
 A minimalist generative grammar library. For use in bots and other mischief.
+
+# Usage
+
+```ruby
+grammar = {
+  "<root>" => [
+    ["#dog#name#", "says", "<bark>", "."],
+  ],
+  "<bark>" => [
+    ["ruff"],
+    ["woof"],
+  ]
+}
+
+class Dog
+  def name
+    "Daisy"
+  end
+end
+
+Wordz.generate(
+  grammar: grammar,
+  subjects: { dog: Dog.new },
+)
+
+# Will return one of the following, at random.
+# => "Daisy says ruff."
+# => "Daisy says arf." 
+```
